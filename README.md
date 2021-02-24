@@ -1,7 +1,7 @@
 # Wind
-This is a work in progress and not a production ready server yet. So far, it support Http 1.0, 1.1 and can simply fetch web pages. Even though **Wind** has a long way to go before becoming a fully fledged http server library like **Django**, it attains the highest performance amongst python server libraries in some of the benchmarks below.
+This is a work-in-progress python http server library and not a production ready server yet. So far, it support Http 1.0, 1.1 and can simply fetch web pages. Even though **Wind** has a long way to go before becoming a fully fledged http server library like **Django**, it attains the highest performance amongst python server libraries in some of the benchmarks below.
 
-# Benchmarks
+## Benchmarks
 The benchmarks were carried out in my linux work machine using **ApacheBench** under four scenarios as given below in the table. In every request, the servers respond with the string "Hello World". The table entries indicate the number of requests per second that each server can respond to and the bold entries indicate the fastest reading under that particular testing scenario. In almost all of the cases below, **Wind** outperforms all the other libraries significantly. The N/A below indicates timeout errors.
 
 | Library     		| ```ab -n 50000``` | ```ab -n 100000 -c 30``` | ```ab -k -n 200000```| ```ab -k -n 400000 -c 30``` |
@@ -15,7 +15,7 @@ The benchmarks were carried out in my linux work machine using **ApacheBench** u
 | Tornado   		| 1838.15  | 2468.80 | 2300.07 | 2776.09 |
 | Twisted 			| 2045.28  | 3344.92 | 2091.33 | 3019.14 |
 
-# Installation
+## Installation
 **Wind** is mostly coded using C++ and Python C API. Hence, a C++14 compliant compiler will be required along with Python C API header files. **Wind** supports Python 3.5+ and currently Linux systems. Enter ```python setup.py install``` in the terminal to install the library.
 
 ### TODO : Documentation.
