@@ -17,9 +17,8 @@ wind_ext = Extension(
                         include_dirs = all_headers,
                         extra_compile_args = ["-O3", "-std=c++14", "-w", "-fpermissive"], 
                         language="c++", 
-                        # extra_link_args=['callLib.a'],
                     )
-#
+
 
 setup(  
         name='Wind',
@@ -28,8 +27,6 @@ setup(
         author_email = 'shuhash6@gmail.com',
         description = 'Wind - a high performance Python http server library',
         license = 'MIT',
-        # url = 'https://github.com/touqir14/MaxFlow',
         packages = ['wind'],
-        ext_modules = [wind_ext],
-        # install_requires=['scipy>=0.17.0', 'numpy>=1.13.0'],      
+        ext_modules = [wind_ext],      
     )
