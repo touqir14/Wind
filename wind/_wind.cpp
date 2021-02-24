@@ -26,18 +26,11 @@ responseMap_t create_responseMap(PyObject* dict) {
 	    if ((k==NULL) || (v==NULL)) {
 	        continue;
 	    }
-	    yo = std::string(v, v_len);
-	 //    std::cout<<"***********************************"<<std::endl;
-		// std::cout<<std::string(k, k_len)<<std::endl;
-	 //    std::cout<<"***********************************"<<std::endl;
-	 //    std::cout<<std::string(v, v_len)<<std::endl;
 	    map[std::string(k, k_len)] = std::string(v, v_len);
 	}
 	if (PyErr_Occurred() != NULL) {
-	// if (PyErr_Occurred() == NULL) {
 		PyErr_Clear();
 		PyErr_SetString(PyExc_ValueError, "1 or more uri endpoint value and respose body could not be parsed");
-		// PyErr_SetString(PyExc_ValueError, yo.c_str());
 	}
 	return map;
 }
@@ -54,7 +47,7 @@ static void custom_dealloc(windObj* self) {
 
 static PyObject* custom_new(PyTypeObject *type, PyObject *args) {
     /*
-    Allocates the dictObj
+    Allocates the windObj
     */
 
     auto self = (windObj*) type->tp_alloc(type, 0);
@@ -111,35 +104,8 @@ static PyObject* run_server(windObj* self) {
 static PyMethodDef methods_wind[] = {
     {"set_responses", set_responses, METH_VARARGS, "This method initializes the uri handlers based on the input dictionary such that for a (key, value) pair, key is the uri and value is the response body to be returned."},
     {"run_server", run_server, METH_VARARGS, "Calling this method puts the server in a listening state."},
-    // {"clear", clear, METH_VARARGS, "clears the hashtable"},
-    // {"get_keys", get_keys, METH_VARARGS, "returns a list of all keys"},
-    // {"get_values", get_values, METH_VARARGS, "returns a list of all values"},
-    // {"get_items", get_items, METH_VARARGS, "returns a list of all key-value pairs"},
-    // {"to_Pydict", to_Pydict, METH_VARARGS, "returns a python dictionary created from the microdict"},
-    // {"update", update, METH_VARARGS, "Updates the microdict with all key-value pairs within the given input: Either a Python dictionary or another microdict"},
-    // {"values", get_value_iterator, METH_VARARGS, "Returns an iterator for iterating over values"},
-    // {"items", get_item_iterator, METH_VARARGS, "Returns an iterator for iterating over items"},
-    // {"copy", copy, METH_VARARGS, "Returns a deep copy of the hashtable"},
     {NULL, NULL, 0, NULL}
 };
-
-
-// static PySequenceMethods sequence_i64_i32 = {
-//     _len_,                            /* sq_length */
-//     0,                                  /* sq_concat */
-//     0,                                  /* sq_repeat */
-//     0,                                  /* sq_item */
-//     0,                                  /* sq_slice */
-//     0,                                  /* sq_ass_item */
-//     0,                                  /* sq_ass_slice */
-//     (objobjproc) _contains_,           /* sq_contains */
-// };
-
-// static PyMappingMethods mapping_i64_i32 = {
-//     0, /*mp_length*/
-//     (binaryfunc)mapping_get, /*mp_subscript*/
-//     (objobjargproc)mapping_set, /*mp_ass_subscript*/
-// };
 
 
 static PyTypeObject windType = {
@@ -153,10 +119,6 @@ static PyTypeObject windType = {
     .tp_methods = methods_wind,
     .tp_init = (initproc) custom_init,
     .tp_new = custom_new,
-    // .tp_as_sequence = &sequence_i64_i32,
-    // .tp_as_mapping = &mapping_i64_i32,
-    // .tp_iter = (getiterfunc) mdict_iter,
-    // .tp_iternext = (iternextfunc) mdict_iternext,
 };
 
 

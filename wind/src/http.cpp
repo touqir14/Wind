@@ -8,7 +8,6 @@ extern "C" {
 	#include <stdio.h>
 }
 
-// #include <sstream>
 /*** HttpServerConnection ***/
 
 HttpServerConnection::HttpServerConnection(Scheduler& scheduler,FD accept_fd):
