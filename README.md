@@ -18,4 +18,16 @@ The benchmarks were carried out in my linux work machine using **ApacheBench** u
 ## Installation
 **Wind** is mostly coded using C++ and Python C API. Hence, a C++14 compliant compiler will be required along with Python C API header files. **Wind** supports Python 3.5+ and currently Linux systems. Enter ```python setup.py install``` in the terminal to install the library.
 
+## A simple example
+```python
+from wind import Server
+
+s = Server(port=5000)
+s.add_endpoint('/', 'hello world') # sending request to "127.0.0.1:5000/" will return the "hello world" string
+s.add_directory('/', './contents', ['html', 'css']) 
+# Instructs server to fetch any html or css files present within "contents" folder.
+# Inside the "contents" folder, suppose there is page1.html, page2.html and other css files. 
+# To get 'page1.html', send request to "127.0.0.1:5000/page1.html" from the browser.
+s.start()
+```
 ### TODO : Documentation.
